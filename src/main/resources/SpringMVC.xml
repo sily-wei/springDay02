@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/c"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="user" class="com.wn.user.User" scope="singleton" init-method="init" destroy-method="destory">
+        <property name="username" value="张三"/>
+    </bean>
+    <bean id="userDemo" class="com.wn.user.UserDemo" scope="prototype" init-method="init" destroy-method="destory"/>
+
+
+    <!--使用构造器方法进行赋值-->
+    <bean id="userDemo2" class="com.wn.user.UserDemo">
+        <constructor-arg name="id" value="12"/>
+        <constructor-arg name="username" value="测试2"/>
+    </bean>
+
+    <!--使用setter 方法赋值-->
+    <bean id="userDemo3" class="com.wn.user.UserDemo">
+        <property name="username" value="测试3"/>
+        <property name="user" ref="user"/>
+    </bean>
+
+    <!--使用P标签-->
+    <bean id="userDemo4" class="com.wn.user.UserDemo" p:id="13" p:username="测试4">
+    </bean>
+
+    <bean id="fuZaBean" class="com.wn.user.FuZaBean">
+        <property name="myStrs">
+            <set>
+                <value>苹果</value>
+                <value>梨</value>
+                <value>香蕉</value>
+            </set>
+        </property>
+        <property name="myList">
+            <array>
+                <value>骆驼</value>
+                <value>猴子</value>
+                <value>大象</value>
+            </array>
+        </property>
+        <property name="mySet">
+            <list>
+                <value>青花瓷</value>
+                <value>说好不哭</value>
+                <value>稻香</value>
+            </list>
+        </property>
+        <property name="myMap">
+            <props>
+                <prop key="1906">35</prop>
+                <prop key="1908">67</prop>
+            </props>
+        </property>
+        <property name="myProps">
+            <map>
+                <entry key="0379" value="洛阳"/>
+                <entry key="0399" value="开封"/>
+            </map>
+        </property>
+    </bean>
+
+</beans>
